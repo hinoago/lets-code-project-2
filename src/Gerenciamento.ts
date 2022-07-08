@@ -3,21 +3,21 @@ import { Musico } from "./model/Musico";
 class Gerenciamento{
     private musicos: Array<Musico> = [];
 
-    getMusicos(){
+    getMusicians(){
         return this.musicos;
     }
 
-    cadastrar(musico: Musico){
+    registerMusician(musico: Musico){
         if(!this.musicos.find(m => m.getEmail() == musico.getEmail())){
             this.musicos.push(musico);
         }
     }
     
-    buscarPorEmail(email: string){
+    searchByEmail(email: string){
         return this.musicos.find(musico => musico.getEmail() == email);
     }
 
-    buscarPorGenero(genero: string){
+    searchByGenre(genero: string){
         const result = this.musicos.filter(musico =>{
             return musico.getGeneros().find(g => g == genero);
         });
@@ -25,7 +25,7 @@ class Gerenciamento{
         return result;
     }
 
-    buscarPorInstrumento(instrumento: string){
+    searchByInstrument(instrumento: string){
         const result = this.musicos.filter(musico =>{
             return musico.getInstrumentos().find(i => i == instrumento);
         });
@@ -33,28 +33,28 @@ class Gerenciamento{
         return result;
     }
     
-    adicionarGenero(email: string, genero: string){
+    addGenre(email: string, genero: string){
         const usuario = this.musicos.find(musico => musico.getEmail() == email);
         if(usuario){
             usuario.setGeneros(genero);
         }
     }
 
-    removerGenero(email: string, genero: string){
+    removeGenre(email: string, genero: string){
         const usuario = this.musicos.find(musico => musico.getEmail() == email);
         if(usuario && usuario.getGeneros().find(g => g == genero)){
             usuario.unsetGeneros(genero);
         }
     }
 
-    adicionarInstrumento(email: string, instrumento: string){
+    addInstrument(email: string, instrumento: string){
         const usuario = this.musicos.find(musico => musico.getEmail() == email);
         if(usuario){
             usuario.setInstrumentos(instrumento);
         }
     }
 
-    removerInstrumento(email: string, instrumento: string){
+    removeInstrument(email: string, instrumento: string){
         const usuario = this.musicos.find(musico => musico.getEmail() == email);
         if(usuario && usuario.getInstrumentos().find(i => i == instrumento)){
             usuario.unsetInstrumentos(instrumento);
