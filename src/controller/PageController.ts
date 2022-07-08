@@ -4,15 +4,19 @@ class PageController{
         //should not be instantiated
     }
     
-    static getAddEmail(): HTMLInputElement{
+    static getInputAddEmail(): HTMLInputElement{
         return document.querySelector("#input_add_email")!;
     }
 
-    static getAddGenre(): HTMLInputElement{
+    static getInputAddName(): HTMLInputElement{
+        return document.querySelector("#input_add_name")!;
+    }
+
+    static getInputAddGenre(): HTMLInputElement{
         return document.querySelector("#input_add_genre")!;
     }
 
-    static getAddInstrument(): HTMLInputElement{
+    static getInputAddInstrument(): HTMLInputElement{
         return document.querySelector("#input_add_instrument")!;
     }
 
@@ -20,19 +24,19 @@ class PageController{
         return document.querySelector("#button_add")!;
     }
 
-    static getSearchEmail(): HTMLInputElement{
+    static getInputSearchEmail(): HTMLInputElement{
         return document.querySelector("#input_search_email")!;
     }
 
-    static getSearchGenre(): HTMLInputElement{
+    static getInputSearchGenre(): HTMLInputElement{
         return document.querySelector("#input_search_genre")!;
     }
 
-    static getSearchInstrument(): HTMLInputElement{
+    static getInputSearchInstrument(): HTMLInputElement{
         return document.querySelector("#input_search_instrument")!;
     }
 
-    static getSearchCheck(): HTMLInputElement{
+    static getInputSearchCheck(): HTMLInputElement{
         return document.querySelector("#input_search_check")!;
     }
 
@@ -40,15 +44,15 @@ class PageController{
         return document.querySelector("#button_search")!;
     }
 
-    static getchangeEmail(): HTMLInputElement{
+    static getInputchangeEmail(): HTMLInputElement{
         return document.querySelector("#input_change_email")!;
     }
 
-    static getChangeValue(): HTMLInputElement{
+    static getInputChangeValue(): HTMLInputElement{
         return document.querySelector("#input_change_value")!;
     }
 
-    static getChangeRadio(){
+    static getInputChangeRadio(){
         return document.getElementsByName("select")!;
     }
 
