@@ -12,13 +12,20 @@ class StorageController{
     }
 
     static getStorage(){
-        return JSON.parse(localStorage.getItem(StorageController.KEY)!) as Array<Musico>;
+        const storage = localStorage.getItem(StorageController.KEY);
+        if(storage){
+            return JSON.parse(storage) as Array<Musico>;
+        }
+
+        return undefined;
     }
 
     static setStorage(musician: Musico){
         const musicians = this.getStorage();
-        musicians.push(musician);
-        localStorage.setItem(StorageController.KEY , JSON.stringify(musicians));
+        if(musicians){
+            musicians.push(musician);
+            localStorage.setItem(StorageController.KEY , JSON.stringify(musicians));
+        }
     }
 }
 

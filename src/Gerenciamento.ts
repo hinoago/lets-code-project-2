@@ -1,15 +1,27 @@
+import { StorageController } from "./controller/StorageController";
 import { Musico } from "./model/Musico";
 
 class Gerenciamento{
     private musicos: Array<Musico> = [];
+
+    constructor(){
+        if(StorageController.getStorage() == undefined){
+            StorageController.createStorage();
+        }
+    }
 
     getMusicians(){
         return this.musicos;
     }
 
     registerMusician(musico: Musico){
-        if(!this.musicos.find(m => m.getEmail() == musico.getEmail())){
-            this.musicos.push(musico);
+        const musicians = StorageController.getStorage();
+        if(musicians == undefined){
+            return;
+        }
+        
+        if(!musicians.some(musician => musician.getEmail() == musico.getEmail())){
+            StorageController.setStorage(musico);
         }
     }
     
