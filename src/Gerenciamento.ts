@@ -1,23 +1,3 @@
-//cadastrar musico
-//buscar musico
-//modificar musico
-//musico
-//nome
-//email
-//genero musical: minimo 1
-//instrumento: minimo 1
-
-//cadastrar
-//email deve ser unico
-
-//buscar
-//email, genero(apenas 1) ou instrumento(apenas 1)
-//selecionar se deve bater com todas as informacoes fornecidas ou apenas uma
-
-//modidificar
-//busca por email
-//permitido adicionar ou remover generos e instrumentos
-
 import { Musico } from "./model/Musico";
 
 class Gerenciamento{
