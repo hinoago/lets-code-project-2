@@ -1,13 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link rel="stylesheet" href="src/style.css">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="container">
+      <div id="add" class="area">
+        <h1>Cadastrar músico</h1>
+        <input id="input_add_email" type="text" placeholder="Informe seu email">
+        <input id="input_add_genre" type="text" placeholder="Informe o gênero musical">
+        <input id="input_add_instrument" type="text" placeholder="Informe o instrumento">
+        <button id="button_add" class="button">Cadastrar</button>
+      </div>
+      <div id="search" class="area">
+        <h1>Buscar músicos</h1>
+        <input id="input_search_email" type="text" placeholder="Buscar por email">
+        <input id="input_search_genre" type="text" placeholder="Buscar por gênero musical">
+        <input id="input_search_instrument" type="text" placeholder="Buscar por instrumento">
+        <label>
+          <input id="input_search_check" type="checkbox">
+          Todos os campos devem estar presentes
+        </label>
+        <button id="button_search" class="button">Buscar</button>
+      </div>
+      <div id="change" class="area">
+        <h1>Alterar dados</h1>
+        <input id="input_change_email" type="text" placeholder="Informe o email do usuário">
+        <input id="input_change_value" type="text" placeholder="Informe o que deseja inserir/remover">
+        <label>
+          <input id="input_change_genre" type="radio" name="select" value="genre">Gênero
+        </label>
+        <label>
+          <input id="input_change_instrument" type="radio" name="select" value="instrument">Instrumento
+        </label>
+        <button id="button_insert" class="button">Inserir</button>
+        <button id="button_remove" class="button">Remover</button>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
