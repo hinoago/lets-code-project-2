@@ -11,7 +11,12 @@ class Gerenciamento{
     }
 
     getMusicians(){
-        return this.musicos;
+        const storage = StorageController.getStorage();
+        if(storage){
+            return storage;
+        }
+
+        return undefined;
     }
 
     registerMusician(musico: Musico){
@@ -19,14 +24,19 @@ class Gerenciamento{
         if(musicians == undefined){
             return;
         }
-        
+
         if(!musicians.some(musician => musician.getEmail() == musico.getEmail())){
             StorageController.setStorage(musico);
         }
     }
     
     searchByEmail(email: string){
-        return this.musicos.find(musico => musico.getEmail() == email);
+        const musicians = StorageController.getStorage();
+        if(musicians){
+            return musicians.find(musician => musician.getEmail() == email);
+        }
+
+        return undefined;
     }
 
     searchByGenre(genero: string){

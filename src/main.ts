@@ -18,16 +18,20 @@ PageController.getAddButton().addEventListener("click", () =>{
         return;
     }
 
-    if(!management.getMusicians().find(musico => musico.getEmail() == userEmail)){
-        const instruments = inputInstruments.value.trim().split(",");
-        const genres = inputGenres.value.trim().split(",");
-        const musician = new Musico(name, userEmail, genres, instruments);
-        management.registerMusician(musician);
-        inputEmail.value = "";
-        inputName.value = "";
-        inputInstruments.value = "";
-        inputGenres.value = "";
-        Utils.createModal(`Músico ${name} cadastrado com sucesso`, "OK");
+    const musicians = management.getMusicians();
+    
+    if(musicians){
+        if(!musicians.find(musico => musico.getEmail() == userEmail)){
+            const instruments = inputInstruments.value.trim().split(",");
+            const genres = inputGenres.value.trim().split(",");
+            const musician = new Musico(name, userEmail, genres, instruments);
+            management.registerMusician(musician);
+            inputEmail.value = "";
+            inputName.value = "";
+            inputInstruments.value = "";
+            inputGenres.value = "";
+            Utils.createModal(`Músico ${name} cadastrado com sucesso`, "OK");
+        }
     }
 });
 
