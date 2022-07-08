@@ -1,4 +1,8 @@
 class PageController{
+
+    private constructor(){
+        //should not be instantiated
+    }
     
     static getAddEmail(): HTMLInputElement{
         return document.querySelector("#input_add_email")!;
