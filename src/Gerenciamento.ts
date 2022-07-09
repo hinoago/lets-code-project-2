@@ -1,4 +1,5 @@
 import { StorageController } from "./controller/StorageController";
+import { Musician } from "./interface/Interface";
 import { Musico } from "./model/Musico";
 
 class Gerenciamento{
@@ -20,20 +21,20 @@ class Gerenciamento{
     }
 
     registerMusician(musico: Musico){
-        const musicians = StorageController.getStorage();
+        const musicians = StorageController.getStorage() as Array<Musician>;
         if(musicians == undefined){
             return;
         }
 
-        if(!musicians.some(musician => musician.getEmail() == musico.getEmail())){
+        if(!musicians.some(musician => musician.email == musico.getEmail())){
             StorageController.setStorage(musico);
         }
     }
     
     searchByEmail(email: string){
-        const musicians = StorageController.getStorage();
+        const musicians = StorageController.getStorage() as Array<Musician>;
         if(musicians){
-            return musicians.find(musician => musician.getEmail() == email);
+            return musicians.find(musician => musician.email == email);
         }
 
         return undefined;
