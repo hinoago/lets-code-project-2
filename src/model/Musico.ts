@@ -26,28 +26,6 @@ class Musico{
     getInstrumentos(): Array<string>{
         return this.instrumentos;
     }
-
-    setGeneros(genero: string){
-        this.generos.push(genero);
-    }
-
-    setInstrumentos(instrumento: string){
-        this.instrumentos.push(instrumento);
-    }
-
-    unsetGeneros(genero: string){
-        const match = this.generos.find(g => g == genero);
-        if(match){
-            this.generos.splice(this.generos.indexOf(match), 1);
-        }
-    }
-
-    unsetInstrumentos(instrumento: string){
-        const match = this.generos.find(i => i == instrumento);
-        if(match){
-            this.instrumentos.splice(this.instrumentos.indexOf(match), 1);
-        }
-    }
 }
 
 export {Musico}
