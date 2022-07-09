@@ -14,14 +14,14 @@ class StorageController{
     static getStorage(){
         const storage = localStorage.getItem(StorageController.KEY);
         if(storage){
-            return JSON.parse(storage) as Array<Musico>;
+            return JSON.parse(storage);
         }
 
         return undefined;
     }
 
     static setStorage(musician: Musico){
-        const musicians = this.getStorage();
+        const musicians = this.getStorage() as Array<Musico>;
         if(musicians){
             musicians.push(musician);
             localStorage.setItem(StorageController.KEY , JSON.stringify(musicians));
