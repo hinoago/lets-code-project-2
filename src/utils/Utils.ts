@@ -19,6 +19,10 @@ class Utils{
         document.querySelector("#background")?.remove();
         document.querySelector("#modal")?.remove();
     }
+
+    static capitalize(string: string){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 }
 
 export {Utils}
