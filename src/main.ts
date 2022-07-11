@@ -166,3 +166,23 @@ PageController.getRemoveButton().addEventListener("click", () =>{
 
     Utils.createModal("Remoção realizada com sucesso", "OK");
 });
+
+PageController.getButtonAddBand().addEventListener("click", () =>{
+    const instrumentSearched = PageController.getInputBandInstrument().value;
+    PageController.getInputBandInstrument().value = "";
+
+    PageController.getTextAreaBand().innerHTML += `${instrumentSearched}\n`;
+});
+
+PageController.getButtonFindBand().addEventListener("click", () =>{
+    const content = PageController.getTextAreaBand().textContent;
+
+    if(content){
+        const band = content.trim().split("\n");
+        band.forEach(instrument =>{
+            const match = management.searchByInstrument(instrument.toLowerCase());
+            console.log(`${instrument}:`);
+            console.log(match);
+        });
+    }
+});
