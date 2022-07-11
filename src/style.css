@@ -64,3 +64,8 @@ ul{
 li{
   margin-bottom: 15px;
 }
+
+#input_band_instrument{
+  width: 160px;
+  display: inline-block;
+}
