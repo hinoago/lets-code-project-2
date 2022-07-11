@@ -1,3 +1,4 @@
+import { Musician } from "../interface/Interface";
 import { Musico } from "../model/Musico";
 
 class StorageController{
@@ -26,6 +27,10 @@ class StorageController{
             musicians.push(musician);
             localStorage.setItem(StorageController.KEY , JSON.stringify(musicians));
         }
+    }
+
+    static changeStorage(musicians: Array<Musician>){
+        localStorage.setItem(StorageController.KEY , JSON.stringify(musicians));
     }
 }
 
