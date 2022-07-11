@@ -55,32 +55,50 @@ class Gerenciamento{
 
         return result;
     }
-    
-    addGenre(email: string, genero: string){
-        const usuario = this.musicos.find(musico => musico.getEmail() == email);
-        if(usuario){
-            usuario.setGeneros(genero);
+
+    addGenre(email:string, genero: string){
+        const musicians = StorageController.getStorage() as Array<Musician>;
+        const musician = musicians.find(mus => mus.email == email);
+
+        if(musician){
+            musician.generos.push(genero);
+            musicians.splice(musicians.indexOf(musician), 1);
+            musicians.push(musician);
+            StorageController.changeStorage(musicians);
         }
     }
 
-    removeGenre(email: string, genero: string){
-        const usuario = this.musicos.find(musico => musico.getEmail() == email);
-        if(usuario && usuario.getGeneros().find(g => g == genero)){
-            usuario.unsetGeneros(genero);
+    addInstrument(email:string, instrumento: string){
+        const musicians = StorageController.getStorage() as Array<Musician>;
+        const musician = musicians.find(mus => mus.email == email);
+
+        if(musician){
+            musician.instrumentos.push(instrumento);
+            musicians.splice(musicians.indexOf(musician), 1);
+            musicians.push(musician);
+            StorageController.changeStorage(musicians);
         }
     }
 
-    addInstrument(email: string, instrumento: string){
-        const usuario = this.musicos.find(musico => musico.getEmail() == email);
-        if(usuario){
-            usuario.setInstrumentos(instrumento);
+    removeGenre(email: string, genre: string){
+        const musicians = StorageController.getStorage() as Array<Musician>;
+        const musician = musicians.find(m => m.email == email);
+        if(musician){
+            musicians.splice(musicians.indexOf(musician), 1);
+            musician.generos.splice(musician.generos.indexOf(genre), 1);
+            musicians.push(musician);
+            StorageController.changeStorage(musicians);
         }
     }
 
-    removeInstrument(email: string, instrumento: string){
-        const usuario = this.musicos.find(musico => musico.getEmail() == email);
-        if(usuario && usuario.getInstrumentos().find(i => i == instrumento)){
-            usuario.unsetInstrumentos(instrumento);
+    removeInstrument(email: string, instrument: string){
+        const musicians = StorageController.getStorage() as Array<Musician>;
+        const musician = musicians.find(m => m.email == email);
+        if(musician){
+            musicians.splice(musicians.indexOf(musician), 1);
+            musician.instrumentos.splice(musician.instrumentos.indexOf(instrument), 1);
+            musicians.push(musician);
+            StorageController.changeStorage(musicians);
         }
     }
 }
