@@ -48,12 +48,9 @@ class Gerenciamento{
         return result;
     }
 
-    searchByInstrument(instrumento: string){
-        const result = this.musicos.filter(musico =>{
-            return musico.getInstrumentos().find(i => i == instrumento);
-        });
-
-        return result;
+    searchByInstrument(instrumento: string): Array<Musician>{
+        const result = StorageController.getStorage() as Array<Musician>
+        return result.filter(musician => musician.instrumentos.find(instrument => instrument == instrumento));
     }
 
     addGenre(email:string, genero: string){
