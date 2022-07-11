@@ -52,8 +52,8 @@ class PageController{
         return document.querySelector("#input_change_value")!;
     }
 
-    static getInputChangeRadio(){
-        return document.getElementsByName("select")!;
+    static getInputChangeRadio(): NodeListOf<HTMLInputElement>{
+        return <NodeListOf<HTMLInputElement>>document.getElementsByName("select")!;
     }
 
     static getInsertButton(): HTMLButtonElement{
