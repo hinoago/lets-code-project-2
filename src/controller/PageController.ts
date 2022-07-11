@@ -63,6 +63,22 @@ class PageController{
     static getRemoveButton(): HTMLButtonElement{
         return document.querySelector("#button_remove")!;
     }
+
+    static getInputBandInstrument(): HTMLButtonElement{
+        return document.querySelector("#input_band_instrument")!;
+    }
+
+    static getButtonAddBand(): HTMLButtonElement{
+        return document.querySelector("#button_add_band")!;
+    }
+
+    static getTextAreaBand(): HTMLButtonElement{
+        return document.querySelector("#text_area_band")!;
+    }
+
+    static getButtonFindBand(): HTMLButtonElement{
+        return document.querySelector("#button_find_band")!;
+    }
 }
 
 export {PageController}
