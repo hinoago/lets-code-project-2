@@ -23,8 +23,8 @@ PageController.getAddButton().addEventListener("click", () =>{
     
     if(musicians){
         if(!musicians.find(musico => musico.email == userEmail)){
-            const instruments = inputInstruments.value.replace(" ", "").toLowerCase().split(",");
-            const genres = inputGenres.value.replace(" ", "").toLowerCase().split(",");
+            const instruments = inputInstruments.value.replaceAll(" ", "").toLowerCase().split(",");
+            const genres = inputGenres.value.replaceAll(" ", "").toLowerCase().split(",");
             const musician = new Musico(name, userEmail, genres, instruments);
             management.registerMusician(musician);
             inputEmail.value = "";
@@ -64,9 +64,7 @@ PageController.getSearchButton().addEventListener("click", () =>{
                 }else{
                     Utils.createModal("Musico não encontrado", "OK");
                 }
-            }
-    
-            if(inputGenre.value != ""){
+            }else if(inputGenre.value != ""){
                 const musiciansMatch = musicians.filter(musician => musician.generos.find(genre => genre == inputGenre.value.toLowerCase()));
     
                 if(musiciansMatch.length > 0){
@@ -79,9 +77,7 @@ PageController.getSearchButton().addEventListener("click", () =>{
                 }else{
                     Utils.createModal("Não encontrado", "OK");
                 }
-            }
-    
-            if(inputInstrument.value != ""){
+            }else{
                 const musiciansMatch = musicians.filter(musician => musician.instrumentos.find(instrument => instrument == inputInstrument.value.toLowerCase()));
     
                 if(musiciansMatch.length > 0){
@@ -98,15 +94,15 @@ PageController.getSearchButton().addEventListener("click", () =>{
         }else{
             let musiciansMatch = musicians;
             if(inputEmail.value != ""){
-                musiciansMatch = musiciansMatch.filter(musician => musician.email == inputEmail.value);
+                musiciansMatch = musiciansMatch.filter(musician => musician.email == inputEmail.value.toLowerCase());
             }
 
             if(inputGenre.value != ""){
-                musiciansMatch = musiciansMatch.filter(musician => musician.generos.find(genre => genre == inputGenre.value));
+                musiciansMatch = musiciansMatch.filter(musician => musician.generos.find(genre => genre == inputGenre.value.toLowerCase()));
             }
 
             if(inputInstrument.value != ""){
-                musiciansMatch = musiciansMatch.filter(musician => musician.instrumentos.find(instrument => instrument == inputInstrument.value));
+                musiciansMatch = musiciansMatch.filter(musician => musician.instrumentos.find(instrument => instrument == inputInstrument.value.toLowerCase()));
             }
 
             if(musiciansMatch.length > 0){
@@ -124,9 +120,49 @@ PageController.getSearchButton().addEventListener("click", () =>{
 });
 
 PageController.getInsertButton().addEventListener("click", () =>{
-    console.log("inserir");
+    const musicians = management.getMusicians() as Array<Musician>;
+    const email = PageController.getInputchangeEmail().value;
+    const insertionValue = PageController.getInputChangeValue().value;
+    const choice = PageController.getInputChangeRadio();
+    
+    const musician = musicians.find(musician => musician.email == email);
+    if(musician){
+        for(let i = 0; i < choice.length; i++){
+            if(choice[i].value == "genre" && choice[i].checked){
+                musician.generos.push(insertionValue);
+                management.addGenre(email, insertionValue.toLowerCase());
+            }
+
+            if(choice[i].value == "instrument" && choice[i].checked){
+                musician.generos.push(insertionValue);
+                management.addInstrument(email, insertionValue.toLowerCase());
+            }
+        }
+        PageController.getInputChangeValue().value = "";
+    }
+
+    Utils.createModal("Inserção realizada com sucesso", "OK");
 });
 
 PageController.getRemoveButton().addEventListener("click", () =>{
-    console.log("remover");
+    const musicians = management.getMusicians() as Array<Musician>;
+    const email = PageController.getInputchangeEmail().value;
+    const removalValue = PageController.getInputChangeValue().value;
+    const choice = PageController.getInputChangeRadio();
+    
+    const musician = musicians.find(musician => musician.email == email);
+    if(musician){
+        for(let i = 0; i < choice.length; i++){
+            if(choice[i].value == "genre" && choice[i].checked){
+                management.removeGenre(email, removalValue.toLowerCase());
+            }
+
+            if(choice[i].value == "instrument" && choice[i].checked){
+                management.removeInstrument(email, removalValue.toLowerCase());
+            }
+        }
+        PageController.getInputChangeValue().value = "";
+    }
+
+    Utils.createModal("Remoção realizada com sucesso", "OK");
 });
